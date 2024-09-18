@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Kontrolny Systemu Temperatur</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* Zapobiega przewijaniu w poziomie */
+        }
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            flex: 1;
+            width: 100%;
+            max-width: 1400px; /* Zwiększona maksymalna szerokość dla większych ekranów */
+            margin: auto;
+            padding-top: 20px;
+            box-sizing: border-box; /* Uwzględnia padding i border w szerokości kontenera */
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Zmieniona minimalna szerokość dla lepszego dopasowania */
+            gap: 20px;
+            margin-top: 20px;
+            grid-auto-rows: minmax(200px, auto); /* Jednolita wysokość kafelków */
+        }
+        .box {
+            background: #282828;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: background 0.3s, box-shadow 0.3s;
+            box-sizing: border-box; /* Uwzględnia padding i border w szerokości boxa */
+            height: 200px; /* Jednolita wysokość */
+            position: relative;
+        }
+        .box:hover {
+            background: #333;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+        }
+        h2 {
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin: 0;
+            font-size: 18px;
+            text-align: center;
+        }
+        .value {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .unit {
+            color: #888;
+            font-size: 24px;
+        }
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Rozdziela wskaźniki */
+            padding: 0 20px; /* Dodaje odstęp od krawędzi */
+            box-sizing: border-box; /* Uwzględnia padding w szerokości kontenera */
+        }
+        .indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ccc;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+        .indicator.green {
+            background-color: #4CAF50; /* Zielony */
+        }
+        .indicator.red {
+            background-color: #F44336; /* Czerwony */
+        }
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panel Kontrolny Systemu Temperatur w Kotłowni.</h1>
+    </header>
+
+    <div class="container">
+        <div class="dashboard">
+            <div class="box">
+                <h2>Temperatura Pieca</h2>
+                <div class="value">75<span class="unit">°C</span></div>
+                <div class="indicators">
+                    <div class="indicator green"></div> <!-- Zielona lampka -->
+                    <div class="indicator red"></div>   <!-- Czerwona lampka -->
+                </div>
+            </div>
+            <div class="box">
+                <h2>Temperatura Kolektora Słonecznego</h2>
+                <div class="value">65<span class="unit">°C</span></div>
+                <div class="indicators">
+                    <div class="indicator green"></div> <!-- Zielona lampka -->
+                    <div class="indicator red"></div>   <!-- Czerwona lampka -->
+                </div>
+            </div>
+            <div class="box">
+                <h2>Temperatura Bufora</h2>
+                <div class="value">Dolna: 40<span class="unit">°C</span></div>
+                <div class="value">Górna: 60<span class="unit">°C</span></div>
+                <div class="indicators">
+                    <div class="indicator green"></div> <!-- Zielona lampka -->
+                    <div class="indicator red"></div>   <!-- Czerwona lampka -->
+                </div>
+            </div>
+            <div class="box">
+                <h2>Zużycie Energii Elektrycznej</h2>
+                <div class="value">120<span class="unit"> kWh</span></div>
+                <div class="indicators">
+                    <div class="indicator green"></div> <!-- Zielona lampka -->
+                    <div class="indicator red"></div>   <!-- Czerwona lampka -->
+                </div>
+            </div>
+            <div class="box">
+                <h2>Energia Pobierana ze Słońca</h2>
+                <div class="value">85<span class="unit"> kWh</span></div>
+                <div class="indicators">
+                    <div class="indicator green"></div> <!-- Zielona lampka -->
+                    <div class="indicator red"></div>   <!-- Czerwona lampka -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Twoja Firma</p>
+    </footer>
+</body>
+</html>
